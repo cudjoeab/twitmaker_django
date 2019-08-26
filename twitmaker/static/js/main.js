@@ -1,15 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-  let form = document.querySelector('form');
+  const tweetsList = document.querySelector('.tweets');
+  const form = document.querySelector('.new-tweet');
+
+  // let form = document.querySelector('form');
+
   form.addEventListener('submit', function(event) {
+    console.log("User clicked submit button")
     event.preventDefault();
     let formData = new FormData(this);
+
     axios.post(
       this.action,
       formData,
-    ).then(function(response) {
-      console.log(response);
-    }).catch(function(error) {
+    )
+
+    .then(function(response) {
+      console.log(response.data);
+    })
+    
+    .catch(function(error) {
       console.log(error);
     });
+
+    // adding new tweet to the list of tweets with Ajax 
+    let tweet = document.createElement('li');
+    let tweetMessage = document.createElement('p'); 
+
+    tweetMessage.innerText = `${response.data.message}`; 
+    tweet.appendChild(tweetMessage);
+    tweetsList.appendChild(tweet); 
+
   });
+
+
 });
