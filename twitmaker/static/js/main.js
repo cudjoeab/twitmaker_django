@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
     axios.post(
       this.action,
       formData,
+      
+    // adding new tweet to the list of tweets with Ajax 
+    let tweet = document.createElement('li');
+    let tweetMessage = document.createElement('p'); 
+
+    tweetMessage.innerText = `${response.data.message}`; 
+    tweet.appendChild(tweetMessage);
+    tweetsList.appendChild(tweet); 
     )
 
     .then(function(response) {
@@ -22,13 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(error);
     });
 
-    // adding new tweet to the list of tweets with Ajax 
-    let tweet = document.createElement('li');
-    let tweetMessage = document.createElement('p'); 
 
-    tweetMessage.innerText = `${response.data.message}`; 
-    tweet.appendChild(tweetMessage);
-    tweetsList.appendChild(tweet); 
 
   });
 
