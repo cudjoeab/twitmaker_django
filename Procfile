@@ -1,1 +1,1 @@
-web: gunicorn twitmaker.wsgi
+web: gunicorn twitmaker.wsgi 
